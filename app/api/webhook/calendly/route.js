@@ -1,8 +1,9 @@
-import { supabase } from '@/lib/supabase'
+import { getSupabase } from '@/lib/supabase'
 import { sendEmail } from '@/lib/send-email'
 
 export async function POST(request) {
   try {
+    const supabase = getSupabase()
     const body = await request.text()
     const payload = JSON.parse(body)
     const event = payload.event

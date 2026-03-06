@@ -1,4 +1,4 @@
-import { supabase } from '@/lib/supabase'
+import { getSupabase } from '@/lib/supabase'
 import { generateEmail, getNextEmailDate } from '@/lib/email-generator'
 import { sendEmail } from '@/lib/send-email'
 
@@ -25,6 +25,7 @@ export async function POST(request) {
       return Response.json({ error: 'Email inválido' }, { status: 400 })
     }
 
+    const supabase = getSupabase()
     const { data: lead, error: dbError } = await supabase
       .from('leads')
       .upsert(

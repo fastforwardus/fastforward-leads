@@ -1,4 +1,4 @@
-import { supabase } from '@/lib/supabase'
+import { getSupabase } from '@/lib/supabase'
 import { generateEmail, getNextEmailDate, SEQUENCE_DELAYS } from '@/lib/email-generator'
 import { sendEmail } from '@/lib/send-email'
 
@@ -14,6 +14,7 @@ export async function GET(request) {
     return Response.json({ error: 'Unauthorized' }, { status: 401 })
   }
 
+  const supabase = getSupabase()
   const now = new Date()
   console.log(`🕐 Cron ejecutado: ${now.toISOString()}`)
 
